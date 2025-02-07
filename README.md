@@ -6,7 +6,7 @@ This is a simple poc to run lilypad jobs via GitHub Actions. Inputs can be provi
 
 To run a job, select the appropriate issue template and fill in the required fields. The job will be run automatically and the results will be posted back to the issue.
 
->> [Submit Lilypad Job](../../issues/new?template=lilypad_job_input.yml)
+To run a job click [Submit Lilypad Job](../../issues/new?template=lilypad_job_input.yml)
 
 ## Example
 
