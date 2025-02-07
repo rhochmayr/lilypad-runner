@@ -1,6 +1,6 @@
 name: Run Lilypad Job
 description: Will run a job on the Lilypad network.
-title: 'Run Lilypad Job'
+title: "Run Lilypad Job"
 
 body:
   - type: dropdown
