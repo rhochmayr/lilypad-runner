@@ -1,0 +1,33 @@
+name: Run Lilypad Job
+description: Will run a job on the Lilypad network.
+title: "Run Lilypad Job"
+
+body:
+  - type: dropdown
+    id: network
+    attributes:
+      label: Network
+      description: "Select the network to run the job on."
+      options: 
+        - "testnet"
+        - "demonet"
+      default: 1
+  - type: input
+    id: target
+    attributes:
+      label: Target
+      description: "Target node"
+      placeholder: "0x1234567890abcdef1234567890abcdef12345678"
+  - type: input
+    id: model
+    attributes:
+      label: model
+      description: "Model to run"
+      placeholder: "cowsay:v0.0.4"
+  - type: textarea
+    id: input
+    attributes:
+      label: input
+      description: "Input parameters to pass to the model"
+      placeholder: 'Message="hello, lilypad"'
+       
