@@ -13,6 +13,26 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.issue.title == 'Run Lilypad Job'
     steps:
+      - name: Update Issue with Workflow Run URL
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const issue_number = context.issue.number;
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const run_id = context.runId;
+
+            const workflow_run_url = `https://github.com/${owner}/${repo}/actions/runs/${run_id}`;
+
+            const body = `:frog: [Workflow Run](${workflow_run_url})`;
+
+            await github.rest.issues.createComment({
+              owner: owner,
+              repo: repo,
+              issue_number: issue_number,
+              body: body
+            });
+
       - name: Checkout repository
         uses: actions/checkout@v3
 

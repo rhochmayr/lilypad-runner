@@ -7,7 +7,7 @@ This is a simple poc to run Lilypad jobs via GitHub Actions. Inputs can be provi
 To run a job, select the appropriate issue template and fill in the required fields. The job will be run automatically and the results commited to the repository.
 
 > [!NOTE]  
-> WIP: Form inputs are currently not passed to the job. A default cowsay job will be triggered. 
+> Form inputs are currently not passed to the job. A default cowsay job will be triggered. 
 
 To run a job click [Submit Lilypad Job](../../issues/new?template=lilypad_job_input.yml)
 
