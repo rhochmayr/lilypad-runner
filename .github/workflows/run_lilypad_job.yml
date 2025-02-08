@@ -49,18 +49,18 @@ jobs:
             # Extract the folder name
             FOLDER_NAME=$(basename "$RESULT_DIR")
             echo "FOLDER_NAME=$FOLDER_NAME" >> $GITHUB_ENV
-            echo "::set-output name=folder_name::$FOLDER_NAME"
+            echo "result_dir=$FOLDER_NAME" >> $GITHUB_OUTPUT
           else
             echo "No downloaded files directory found."
             exit 1
           fi
-
+        
       - name: Commit Results
         run: |
           # Set the results directory
-          RESULTS_DIR="/tmp/lilypad/data/downloaded-files/${{ steps.get_result_dir.outputs.folder_name }}"
+          RESULTS_DIR="/tmp/lilypad/data/downloaded-files/${{ steps.get_result_dir.outputs.result_dir }}"
           # Create a directory for the results in the repository
-          REPO_RESULTS_DIR="downloaded-files/${{ steps.get_result_dir.outputs.folder_name }}"
+          REPO_RESULTS_DIR="downloaded-files/${{ steps.get_result_dir.outputs.result_dir }}"
           mkdir -p "$REPO_RESULTS_DIR"
           # Copy the results to the repository directory
           cp -r "$RESULTS_DIR"/* "$REPO_RESULTS_DIR"/
@@ -68,12 +68,13 @@ jobs:
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Actions"
           git add "$REPO_RESULTS_DIR"
-          git commit -m "Add Lilypad job results: ${{ steps.get_result_dir.outputs.folder_name }}"
+          git commit -m "Add Lilypad job results: ${{ steps.get_result_dir.outputs.result_dir }}"
           git push
 
       - name: Update README
         run: |
-          echo "Link to results: downloaded-files/${{ steps.get_result_dir.outputs.folder_name }}" >> README.md
+          TIMESTAMP=$(date -u +'%Y-%m-%dT%H:%M:%S.%N%Z')
+          echo "$TIMESTAMP [${{ steps.get_result_dir.outputs.result_dir }}](downloaded-files/${{ steps.get_result_dir.outputs.result_dir }})" >> README.md
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Actions"
           git add README.md
