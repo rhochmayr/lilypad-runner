@@ -6,6 +6,7 @@ on:
 
 permissions:
   contents: write
+  issues: write  
 
 jobs:
   run_job:
@@ -80,3 +81,16 @@ jobs:
           git add README.md
           git commit -m "Update README with link to results"
           git push
+
+      - name: Close the Issue
+        uses: actions/github-script@v6
+        with:
+          script: |
+            console.log("Closing the issue...");
+            await github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              state: "closed"
+            });
+            console.log("Issue closed.");          
