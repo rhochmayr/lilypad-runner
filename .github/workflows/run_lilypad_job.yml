@@ -57,7 +57,7 @@ jobs:
           WEB3_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
         id: lilypad_run
         run: |
-          lilypad --network demonet run cowsay:v0.0.4 -i Message="hello, lilypad"
+          lilypad --network testnet run cowsay:v0.0.4 -i Message="hello, lilypad"
 
       - name: Get Result Directory
         id: get_result_dir
